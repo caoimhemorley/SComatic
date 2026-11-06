@@ -10,7 +10,12 @@ from scipy.stats import betabinom
 import scipy.stats as stats
 import pandas as pd
 import subprocess
+import gzip
 
+def open_maybe_gzip(path, mode='rt'):
+        if path.endswith('.gz'):
+                return gzip.open(path, mode)
+        return open(path, mode)
 
 
 def variant_calling_step2(file,distance,editing,pon,window,outfile):
@@ -20,7 +25,11 @@ def variant_calling_step2(file,distance,editing,pon,window,outfile):
 	#---
 	# Temporary file to work with
 	file_temp = file + '.temp'
-	command = "awk -F'\\t' '{if (($1 ~ /^#/) || ($6 != \".\")) {print $0}}' %s > %s " % (file,file_temp)
+
+	if file.endswith('.gz'):
+		command = "zcat %s | awk -F'\\t' '{if (($1 ~ /^#/) || ($6 != \".\")) {print $0}}' > %s" % (file, file_temp)
+	else:
+		command = "awk -F'\\t' '{if (($1 ~ /^#/) || ($6 != \".\")) {print $0}}' %s > %s" % (file, file_temp)
 
 	# Submit linux command
 	try:

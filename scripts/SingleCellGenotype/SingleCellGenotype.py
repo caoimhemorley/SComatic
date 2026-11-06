@@ -182,16 +182,71 @@ def run_interval(code,var_dict,meta_dict,BAM,FASTA,tmp_dir,BQ,MQ,MAX_DP,ALT_FLAG
 				if read_alignment.is_secondary == False and read_alignment.is_duplicate == False and read_alignment.is_supplementary == False:
 					cell_code = barcode + '>>' + CELL_TYPE + '>>' + Alt_obs
 
-					if cell_code in CELLS:
-						CELLS[cell_code] += 1 
-					else:
-						CELLS[cell_code] = 1
+					pileup_read = reads[read_i]
+
+					query_pos = pileup_read.query_position
+					read_len = read_alignment.query_length
+
+					if query_pos is None or read_len is None:
+					        continue
+
+					pos_from_start = query_pos + 1
+					pos_from_end = read_len - query_pos
+					dist_to_nearest_end = min(pos_from_start, pos_from_end)
+					relative_read_pos = pos_from_start / float(read_len)
+
+					if cell_code not in CELLS:
+					        CELLS[cell_code] = {
+					                "num_reads": 0,
+					                "positions": [],
+					                "dist_to_end": [],
+					                "relative_positions": []
+					        }
+
+					CELLS[cell_code]["num_reads"] += 1
+					CELLS[cell_code]["positions"].append(pos_from_start)
+					CELLS[cell_code]["dist_to_end"].append(dist_to_nearest_end)
+					CELLS[cell_code]["relative_positions"].append(relative_read_pos)
 
 			for group in CELLS.keys():
-				barcode,cell_type,Alt_obs = group.split('>>')
-				Group = [str(CHROM), str(POS+1),str(POS+1),Ref_exp, Alt_exp, str(Cell_type_exp), str(Num_cells_exp), barcode, cell_type, Alt_obs, str(CELLS[group])]
-				Group = '\t'.join(Group) + '\n'
-				outfile.write(Group)
+			        barcode,cell_type,Alt_obs = group.split('>>')
+
+			        stats = CELLS[group]
+
+			        positions = stats["positions"]
+			        dist_to_end = stats["dist_to_end"]
+			        relative_positions = stats["relative_positions"]
+
+			        mean_read_pos = sum(positions) / len(positions)
+			        mean_dist_to_end = sum(dist_to_end) / len(dist_to_end)
+			        mean_relative_pos = sum(relative_positions) / len(relative_positions)
+
+			        n_within_5bp = sum(x <= 5 for x in dist_to_end)
+			        n_within_10bp = sum(x <= 10 for x in dist_to_end)
+
+			        Group = [
+			                str(CHROM),
+			                str(POS+1),
+			                str(POS+1),
+			                Ref_exp,
+			                Alt_exp,
+			                str(Cell_type_exp),
+			                str(Num_cells_exp),
+			                barcode,
+			                cell_type,
+			                Alt_obs,
+			                str(stats["num_reads"]),
+			                ",".join(map(str, positions)),
+			                ",".join(map(str, dist_to_end)),
+			                str(round(mean_read_pos, 3)),
+			                str(round(mean_dist_to_end, 3)),
+			                str(round(mean_relative_pos, 4)),
+			                str(n_within_5bp),
+			                str(n_within_10bp)
+			        ]
+
+			        Group = '\t'.join(Group) + '\n'
+			        outfile.write(Group)
 			
 	inFasta.close()
 	bam.close()
@@ -272,7 +327,26 @@ def concatenate_sort_temp_files_and_write(out_file, tmp_dir):
 
 		## Write in the final output file
 		out = open(out_file,'w')
-		Header=['#CHROM','Start', 'End', 'REF', 'ALT_expected', 'Cell_type_expected','Num_cells_expected','CB','Cell_type_observed','Base_observed','Num_reads']
+		Header=[
+		        '#CHROM',
+		        'Start',
+		        'End',
+		        'REF',
+		        'ALT_expected',
+		        'Cell_type_expected',
+		        'Num_cells_expected',
+		        'CB',
+		        'Cell_type_observed',
+		        'Base_observed',
+		        'Num_reads',
+		        'Read_positions',
+		        'Distances_to_read_end',
+		        'Mean_read_position',
+		        'Mean_distance_to_read_end',
+		        'Mean_relative_read_position',
+		        'Reads_within_5bp_of_end',
+		        'Reads_within_10bp_of_end'
+		]
 		out.write('\t'.join(Header)+'\n')
 		
 		# Move thrugh filenanes by sorted coordinates

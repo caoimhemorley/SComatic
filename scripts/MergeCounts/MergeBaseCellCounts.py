@@ -4,6 +4,8 @@ import argparse
 import glob
 import os
 import time
+import gzip
+
 
 def updatefields(REF,INFO,BC,chrs,pos,i,line): #It should check that if the line is null it should just update some flag
 	line = line.split('\t')
@@ -138,7 +140,7 @@ def merge_cell_types_files(infiles,outfile):
 
 	for id_ in range(len(infiles)):
 		
-			tmp=open(infiles[id_],'r')
+			tmp = gzip.open(infiles[id_], 'rt')
 			fileids.append(tmp)
 			for i in range(header_lines):
 				useless = fileids[id_].readline() #skip the header
@@ -155,7 +157,7 @@ def merge_cell_types_files(infiles,outfile):
 			pos.append(0)
 			
 			# Get cell types and append them to header
-			CELL_TYPE = os.path.basename(infiles[id_]).split('.')[-2]
+			CELL_TYPE = os.path.basename(infiles[id_]).replace('.tsv.gz', '').split('.')[-1]
 			header.append(CELL_TYPE)
 
 			updatefields(REF,INFO,BC,chrs,pos,id_,curline)
@@ -224,7 +226,7 @@ def main():
 	print ('-----------------------------------------------------------\n')
 
 	# Checking the number of tsv files in the folder
-	infiles = glob.glob(tsv_folder + '/*.tsv')
+	infiles = glob.glob(tsv_folder + '/*.tsv.gz')
 
 	if len(infiles) < 1:
 		raise RuntimeError('No tsv files found')
