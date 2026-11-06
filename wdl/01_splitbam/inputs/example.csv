@@ -1,0 +1,2 @@
+sample_id,bam,bai,metadata_tsv
+SAMPLE_001,/data/bams/SAMPLE_001.bam,/data/bams/SAMPLE_001.bam.bai,/data/metadata/SAMPLE_001.cell_barcodes.tsv

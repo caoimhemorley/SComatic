@@ -1,0 +1,19 @@
+{
+  "Step2PassUMI.sample_id": "sample_id",
+  "Step2PassUMI.step2_calls": "step2_calls",
+  "Step2PassUMI.astrocyte_bam": "astrocyte_bam",
+  "Step2PassUMI.astrocyte_bai": "astrocyte_bai",
+  "Step2PassUMI.excitatory_bam": "excitatory_bam",
+  "Step2PassUMI.excitatory_bai": "excitatory_bai",
+  "Step2PassUMI.inhibitory_bam": "inhibitory_bam",
+  "Step2PassUMI.inhibitory_bai": "inhibitory_bai",
+  "Step2PassUMI.microglia_bam": "microglia_bam",
+  "Step2PassUMI.microglia_bai": "microglia_bai",
+  "Step2PassUMI.oligodendrocyte_bam": "oligodendrocyte_bam",
+  "Step2PassUMI.oligodendrocyte_bai": "oligodendrocyte_bai",
+  "Step2PassUMI.opc_bam": "opc_bam",
+  "Step2PassUMI.opc_bai": "opc_bai",
+  "Step2PassUMI.other_bam": "other_bam",
+  "Step2PassUMI.other_bai": "other_bai",
+  "Step2PassUMI.max_records": "max_records"
+}

@@ -1,0 +1,6 @@
+{
+  "SplitBamWorkflow.sample_id": "sample_id",
+  "SplitBamWorkflow.bam": "bam",
+  "SplitBamWorkflow.bai": "bai",
+  "SplitBamWorkflow.metadata_tsv": "metadata_tsv"
+}

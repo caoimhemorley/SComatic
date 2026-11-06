@@ -1,0 +1,2 @@
+sample_id,merged_basecounts,ref_fasta
+SAMPLE_001,/data/merged/SAMPLE_001_merged_basecounts.tsv.gz,/data/reference/genome.fa

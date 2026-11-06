@@ -1,0 +1,6 @@
+{
+  "scomatic_callable_sites.sample_id": "sample_id",
+  "scomatic_callable_sites.step1_calls": "step1_calls",
+  "scomatic_callable_sites.max_cov": "max_cov",
+  "scomatic_callable_sites.min_cell_types": "min_cell_types"
+}

@@ -1,0 +1,2 @@
+sample_id,bam,bai,step2_pass,ref_fasta,ref_fai,metadata
+SAMPLE_001,/data/bams/SAMPLE_001.bam,/data/bams/SAMPLE_001.bam.bai,/data/step2/SAMPLE_001.calling.step2.pass.tsv.gz,/data/reference/genome.fa,/data/reference/genome.fa.fai,/data/metadata/SAMPLE_001.cell_barcodes.tsv

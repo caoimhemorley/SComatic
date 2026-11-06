@@ -1,0 +1,5 @@
+{
+  "scomatic_step1.sample_id": "sample_id",
+  "scomatic_step1.merged_basecounts": "merged_basecounts",
+  "scomatic_step1.ref_fasta": "ref_fasta"
+}

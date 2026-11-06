@@ -1,0 +1,9 @@
+{
+  "scomatic_singlecellgenotype.sample_id": "sample_id",
+  "scomatic_singlecellgenotype.bam": "bam",
+  "scomatic_singlecellgenotype.bai": "bai",
+  "scomatic_singlecellgenotype.step2_pass": "step2_pass",
+  "scomatic_singlecellgenotype.ref_fasta": "ref_fasta",
+  "scomatic_singlecellgenotype.ref_fai": "ref_fai",
+  "scomatic_singlecellgenotype.metadata": "metadata"
+}

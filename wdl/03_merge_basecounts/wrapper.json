@@ -1,0 +1,10 @@
+{
+  "scomatic_mergebasecounts_v2.sample_id": "sample_id",
+  "scomatic_mergebasecounts_v2.astrocyte": "astrocyte",
+  "scomatic_mergebasecounts_v2.excitatory": "excitatory",
+  "scomatic_mergebasecounts_v2.inhibitory": "inhibitory",
+  "scomatic_mergebasecounts_v2.microglia": "microglia",
+  "scomatic_mergebasecounts_v2.oligodendrocyte": "oligodendrocyte",
+  "scomatic_mergebasecounts_v2.opc": "opc",
+  "scomatic_mergebasecounts_v2.other": "other"
+}

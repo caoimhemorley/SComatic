@@ -1,0 +1,2 @@
+sample_id,cell_type,bam,bai,ref_fasta,ref_fai,chrom
+SAMPLE_001,Astrocyte,/data/bams/SAMPLE_001.bam,/data/bams/SAMPLE_001.bam.bai,/data/reference/genome.fa,/data/reference/genome.fa.fai,all

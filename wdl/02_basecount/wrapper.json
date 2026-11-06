@@ -1,0 +1,9 @@
+{
+  "scomatic_basecount.sample_id": "sample_id",
+  "scomatic_basecount.cell_type": "cell_type",
+  "scomatic_basecount.bam": "bam",
+  "scomatic_basecount.bai": "bai",
+  "scomatic_basecount.ref_fasta": "ref_fasta",
+  "scomatic_basecount.ref_fai": "ref_fai",
+  "scomatic_basecount.chrom": "chrom"
+}

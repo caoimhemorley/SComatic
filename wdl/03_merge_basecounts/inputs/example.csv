@@ -1,0 +1,2 @@
+sample_id,astrocyte,excitatory,inhibitory,microglia,oligodendrocyte,opc,other
+SAMPLE_001,/data/basecounts/SAMPLE_001.Astrocyte.tsv.gz,/data/basecounts/SAMPLE_001.Excitatory.tsv.gz,/data/basecounts/SAMPLE_001.Inhibitory.tsv.gz,/data/basecounts/SAMPLE_001.Microglia.tsv.gz,/data/basecounts/SAMPLE_001.Oligodendrocyte.tsv.gz,/data/basecounts/SAMPLE_001.OPC.tsv.gz,/data/basecounts/SAMPLE_001.Other.tsv.gz
